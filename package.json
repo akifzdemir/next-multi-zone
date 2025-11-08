@@ -10,7 +10,7 @@
         "start": "npm run start --workspace=home & npm run start --workspace=cart"
     },
     "workspaces": [
-        "home",
-        "cart"
+        "apps/*",
+        "shared"
     ]
 }

@@ -19,7 +19,9 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@repo/shared": ["../../shared/src"],
+      "@repo/shared/*": ["../../shared/src/*"]
     }
   },
   "include": [
