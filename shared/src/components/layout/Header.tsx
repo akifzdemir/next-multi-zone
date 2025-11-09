@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Search, ShoppingBag, User } from "lucide-react";
 import Button from "../ui/Button";
 import { useCartStore } from "../../store/cartStore";
+import CartSheet from "../cart/CartSheet";
 
 interface HeaderProps {
   logoHref?: string;
@@ -17,6 +18,7 @@ export default function Header({
   cartHref = "/cart",
 }: HeaderProps) {
   const [isHydrated, setIsHydrated] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const items = useCartStore((state) => state.items);
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -77,8 +79,12 @@ export default function Header({
             <Button variant="icon" size="icon">
               <User className="h-5 w-5" />
             </Button>
-            <a href={cartHref} className="relative">
-              <Button variant="icon" size="icon">
+            <div className="relative">
+              <Button
+                variant="icon"
+                size="icon"
+                onClick={() => setIsCartOpen(true)}
+              >
                 <ShoppingBag className="h-5 w-5" />
                 <span
                   className={`absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-blue-600 dark:bg-blue-500 text-xs font-bold text-white transition-all duration-200 ${
@@ -90,11 +96,17 @@ export default function Header({
                   {totalItems}
                 </span>
               </Button>
-            </a>
+            </div>
             {themeSwitcher}
           </div>
         </div>
       </div>
+
+      <CartSheet
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+        cartHref={cartHref}
+      />
     </header>
   );
 }
