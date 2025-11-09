@@ -1,15 +1,21 @@
 import Footer from "./Footer";
 import Header from "./Header";
 
+interface SharedLayoutProps {
+  children: React.ReactNode;
+  themeSwitcher?: React.ReactNode;
+  logoHref?: string;
+}
+
 export default function SharedLayout({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+  themeSwitcher,
+  logoHref = "/",
+}: SharedLayoutProps) {
   return (
     <>
-      <Header />
-      {children};
+      <Header logoHref={logoHref} themeSwitcher={themeSwitcher} />
+      {children}
       <Footer />
     </>
   );

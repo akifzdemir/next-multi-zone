@@ -5,9 +5,10 @@ import Button from "../ui/Button";
 
 interface HeaderProps {
   logoHref?: string;
+  themeSwitcher?: React.ReactNode;
 }
 
-export default function Header({ logoHref = "/" }: HeaderProps) {
+export default function Header({ logoHref = "/", themeSwitcher }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-200/50 dark:border-gray-700/50 bg-[#F9F9F9]/80 dark:bg-[#1a1a1a]/80 backdrop-blur-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -61,8 +62,7 @@ export default function Header({ logoHref = "/" }: HeaderProps) {
             <Button variant="icon" size="icon">
               <User className="h-5 w-5" />
             </Button>
-
-            {/* <ThemeSwitcher /> */}
+            {themeSwitcher}
           </div>
         </div>
       </div>
