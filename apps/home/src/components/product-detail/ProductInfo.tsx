@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Minus, Plus, ShoppingCart, Star } from "lucide-react";
 import type { ProductModel } from "@repo/shared";
+import { useCartStore } from "@repo/shared";
 import { toast } from "sonner";
 import { Button } from "@repo/shared";
 
@@ -20,6 +21,7 @@ const colors = [
 const sizes = ["small", "medium", "large"];
 
 export default function ProductInfo({ product }: ProductInfoProps) {
+  const addToCart = useCartStore((state) => state.addToCart);
   const [selectedColor, setSelectedColor] = useState(0);
   const [selectedSize, setSelectedSize] = useState(1);
   const [quantity, setQuantity] = useState(1);
@@ -29,6 +31,19 @@ export default function ProductInfo({ product }: ProductInfoProps) {
   };
 
   const handleAddToCart = () => {
+    addToCart(
+      {
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        image: product.image,
+        category: product.category,
+      },
+      quantity,
+      colors[selectedColor].name,
+      sizes[selectedSize]
+    );
+
     toast.success(`Added ${quantity} item(s) to cart`, {
       description: product.title,
       duration: 3000,
