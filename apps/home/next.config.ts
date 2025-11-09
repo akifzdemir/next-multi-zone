@@ -10,14 +10,15 @@ const nextConfig: NextConfig = {
     ],
   },
   async rewrites() {
+    const cartHost = process.env.CART_HOST || "localhost:3001";
     return [
       {
         source: "/cart",
-        destination: "http://localhost:3001/cart",
+        destination: `http://${cartHost}/cart`,
       },
       {
         source: "/cart/:path*",
-        destination: "http://localhost:3001/cart/:path*",
+        destination: `http://${cartHost}/cart/:path*`,
       },
     ];
   },
