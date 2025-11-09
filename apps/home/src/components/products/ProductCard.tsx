@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { ProductModel } from "@repo/shared";
 import { ShoppingCart } from "lucide-react";
 import { Button } from "@repo/shared/components";
+import { useCartStore } from "@repo/shared";
 import { toast } from "sonner";
 import { createProductUrl } from "@repo/shared/lib/utils";
 
@@ -13,8 +14,18 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+  const addToCart = useCartStore((state) => state.addToCart);
+
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
+
+    addToCart({
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      image: product.image,
+      category: product.category,
+    });
 
     toast.success("Added to cart", {
       description: product.title,

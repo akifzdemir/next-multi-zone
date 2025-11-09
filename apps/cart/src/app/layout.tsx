@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Manrope } from "next/font/google";
+import { Manrope } from "next/font/google";
 import "./globals.css";
 import { SharedLayout } from "@repo/shared/components";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
@@ -26,7 +26,11 @@ export default function RootLayout({
         className={`${manrope.variable} font-sans antialiased bg-[#F9F9F9] text-[#333333] dark:bg-[#1a1a1a] dark:text-[#e5e5e5]`}
       >
         <ThemeProvider attribute="class" defaultTheme="light">
-          <SharedLayout themeSwitcher={<ThemeSwitcher />} logoHref="/cart">
+          <SharedLayout
+            themeSwitcher={<ThemeSwitcher />}
+            logoHref="http://localhost:3000"
+            cartHref="/cart"
+          >
             {children}
           </SharedLayout>
         </ThemeProvider>
