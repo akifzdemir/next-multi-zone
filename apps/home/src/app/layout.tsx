@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Manrope } from "next/font/google";
+import { Manrope } from "next/font/google";
 import "./globals.css";
 import { SharedLayout } from "@repo/shared/components";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { Toaster } from "sonner";
 
 const manrope = Manrope({
   weight: ["400", "500", "600", "700", "800"],
@@ -29,6 +30,7 @@ export default function RootLayout({
           <SharedLayout themeSwitcher={<ThemeSwitcher />}>
             {children}
           </SharedLayout>
+          <Toaster position="bottom-right" />
         </ThemeProvider>
       </body>
     </html>

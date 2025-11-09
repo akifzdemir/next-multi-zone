@@ -1,7 +1,27 @@
-export default function Home() {
+import { API_URL } from "@/config/endpoints";
+import type { ProductModel } from "@/models";
+import ProductsGrid from "@/components/products/ProductsGrid";
+
+const getAllProducts = async (): Promise<ProductModel[]> => {
+  const res = await fetch(`${API_URL}/products`);
+  if (!res.ok) return [];
+  const data = (await res.json()) as ProductModel[];
+  return data;
+};
+
+export default async function ProductsPage() {
+  const products = await getAllProducts();
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      Home App
+    <div className="min-h-screen">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold tracking-tight">All Products</h1>
+          <p className="mt-2 text-sm text-[#6B7280]">Browse all products</p>
+        </div>
+
+        <ProductsGrid products={products} />
+      </div>
     </div>
   );
 }
