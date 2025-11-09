@@ -1,6 +1,6 @@
 import { API_URL } from "@/config/endpoints";
-import type { ProductModel } from "@/models";
 import ProductsGrid from "@/components/products/ProductsGrid";
+import { ProductModel } from "@repo/shared";
 
 const getAllProducts = async (): Promise<ProductModel[]> => {
   const res = await fetch(`${API_URL}/products`);

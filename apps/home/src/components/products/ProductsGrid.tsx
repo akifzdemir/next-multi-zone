@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import type { ProductModel } from "@/models";
+import type { ProductModel } from "@repo/shared";
 import ProductCard from "./ProductCard";
 import ProductFilters, { FilterState } from "./ProductFilters";
 

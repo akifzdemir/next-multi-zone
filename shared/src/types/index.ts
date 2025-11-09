@@ -1,10 +1,12 @@
-export interface Product {
-  id: string;
-  name: string;
+export type ProductModel = {
+  id: number;
+  title: string;
+  description: string;
+  category: string;
   price: number;
-  image?: string;
-}
-
-export interface CartItem extends Product {
-  quantity: number;
-}
+  image: string;
+  rating: {
+    rate: number;
+    count: number;
+  };
+};

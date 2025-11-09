@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import type { ProductModel } from "@/models";
+import type { ProductModel } from "@repo/shared";
 import { ShoppingCart } from "lucide-react";
 import { Button } from "@repo/shared/components";
 import { toast } from "sonner";
+import { createProductUrl } from "@repo/shared/lib/utils";
 
 interface ProductCardProps {
   product: ProductModel;
@@ -23,7 +24,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <Link
-      href={`/product/${product.id}`}
+      href={createProductUrl(product.id, product.title)}
       className="group relative flex flex-col gap-3 cursor-pointer"
     >
       <div className="relative aspect-3/4 w-full overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-800">
