@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Minus, Plus, Trash2, ArrowLeft } from "lucide-react";
@@ -7,9 +8,14 @@ import { Button } from "@repo/shared";
 import { useCartStore } from "@repo/shared";
 
 export default function CartPage() {
+  const [isHydrated, setIsHydrated] = useState(false);
   const items = useCartStore((state) => state.items);
   const updateQuantity = useCartStore((state) => state.updateQuantity);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
+
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
 
   const subtotal = items?.reduce(
     (sum, item) => sum + item.product.price * item.quantity,
@@ -62,7 +68,54 @@ export default function CartPage() {
         </p>
       </div>
 
-      {items.length === 0 ? (
+      {!isHydrated ? (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-start">
+          <div className="lg:col-span-2 space-y-4">
+            {[1, 2, 3].map((i) => (
+              <div
+                key={i}
+                className="flex items-center gap-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 animate-pulse"
+              >
+                <div className="size-20 shrink-0 rounded-lg bg-gray-200 dark:bg-gray-700" />
+                <div className="flex-1 grid grid-cols-1 md:grid-cols-3 items-center gap-4">
+                  <div className="flex flex-col gap-2">
+                    <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4" />
+                    <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-1/2" />
+                  </div>
+                  <div className="flex justify-start md:justify-center">
+                    <div className="h-9 w-28 bg-gray-200 dark:bg-gray-700 rounded-full" />
+                  </div>
+                  <div className="flex items-center justify-between md:justify-end gap-4">
+                    <div className="h-5 w-16 bg-gray-200 dark:bg-gray-700 rounded" />
+                    <div className="h-5 w-5 bg-gray-200 dark:bg-gray-700 rounded" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <aside className="lg:col-span-1">
+            <div className="sticky top-28 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 animate-pulse">
+              <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-1/2 mb-4" />
+              <div className="space-y-3">
+                <div className="flex justify-between">
+                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-20" />
+                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-16" />
+                </div>
+                <div className="flex justify-between">
+                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-20" />
+                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-16" />
+                </div>
+              </div>
+              <div className="my-4 border-t border-dashed border-gray-200 dark:border-gray-700" />
+              <div className="flex justify-between mb-6">
+                <div className="h-5 bg-gray-200 dark:bg-gray-700 rounded w-16" />
+                <div className="h-5 bg-gray-200 dark:bg-gray-700 rounded w-20" />
+              </div>
+              <div className="h-12 bg-gray-200 dark:bg-gray-700 rounded-lg w-full" />
+            </div>
+          </aside>
+        </div>
+      ) : items.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-16">
           <div className="w-32 h-32 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-6">
             <Trash2 className="h-16 w-16 text-gray-400" />

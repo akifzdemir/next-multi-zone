@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Search, ShoppingBag, User } from "lucide-react";
 import Button from "../ui/Button";
 import { useCartStore } from "../../store/cartStore";
@@ -15,8 +16,14 @@ export default function Header({
   themeSwitcher,
   cartHref = "/cart",
 }: HeaderProps) {
+  const [isHydrated, setIsHydrated] = useState(false);
   const items = useCartStore((state) => state.items);
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-200/50 dark:border-gray-700/50 bg-[#F9F9F9]/80 dark:bg-[#1a1a1a]/80 backdrop-blur-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -73,11 +80,15 @@ export default function Header({
             <a href={cartHref} className="relative">
               <Button variant="icon" size="icon">
                 <ShoppingBag className="h-5 w-5" />
-                {totalItems > 0 && (
-                  <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-blue-600 dark:bg-blue-500 text-xs font-bold text-white">
-                    {totalItems}
-                  </span>
-                )}
+                <span
+                  className={`absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-blue-600 dark:bg-blue-500 text-xs font-bold text-white transition-all duration-200 ${
+                    isHydrated && totalItems > 0
+                      ? "scale-100 opacity-100"
+                      : "scale-0 opacity-0"
+                  }`}
+                >
+                  {totalItems}
+                </span>
               </Button>
             </a>
             {themeSwitcher}
