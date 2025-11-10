@@ -1,6 +1,17 @@
 import { API_URL } from "@/config/endpoints";
 import ProductsGrid from "@/components/products/ProductsGrid";
 import { ProductModel } from "@repo/shared";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "All Products | Next Store",
+  description: "Browse our complete collection of quality products",
+  openGraph: {
+    title: "All Products | Next Store",
+    description: "Browse our complete collection of quality products",
+    type: "website",
+  },
+};
 
 const getAllProducts = async (): Promise<ProductModel[]> => {
   const res = await fetch(`${API_URL}/products`);
