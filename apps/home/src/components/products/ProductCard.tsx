@@ -51,6 +51,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           variant="icon"
           size="icon"
           className="absolute bottom-3 right-3 bg-white dark:bg-gray-800 shadow-md opacity-0 transition-opacity group-hover:opacity-100 hover:shadow-lg hover:bg-white dark:hover:bg-gray-700"
+          aria-label={`Add ${product.title} to cart`}
         >
           <ShoppingCart className="h-5 w-5" />
         </Button>

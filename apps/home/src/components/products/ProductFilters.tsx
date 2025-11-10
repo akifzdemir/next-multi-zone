@@ -61,10 +61,14 @@ export default function ProductFilters({
 
         <div className="flex flex-wrap gap-4 items-end">
           <div className="w-40">
-            <label className="block text-sm font-semibold text-[#333333] dark:text-gray-200 mb-2">
+            <label
+              htmlFor="category-filter"
+              className="block text-sm font-semibold text-[#333333] dark:text-gray-200 mb-2"
+            >
               Category
             </label>
             <select
+              id="category-filter"
               value={filters.category}
               onChange={(e) => handleFilterChange("category", e.target.value)}
               className="w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 dark:text-gray-100 px-4 py-2.5 pr-10 text-sm focus:border-[#3B82F6] dark:focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-[#3B82F6]/20 dark:focus:ring-blue-500/20 appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDEyIDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEgMUw2IDZMMTEgMSIgc3Ryb2tlPSIjNkI3MjgwIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==')] bg-size-[12px] bg-position-[center_right_1rem] bg-no-repeat"
@@ -79,10 +83,14 @@ export default function ProductFilters({
           </div>
 
           <div className="w-48">
-            <label className="block text-sm font-semibold text-[#333333] dark:text-gray-200 mb-2">
+            <label
+              htmlFor="sort-filter"
+              className="block text-sm font-semibold text-[#333333] dark:text-gray-200 mb-2"
+            >
               Sort By
             </label>
             <select
+              id="sort-filter"
               value={filters.sortBy}
               onChange={(e) => handleFilterChange("sortBy", e.target.value)}
               className="w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 dark:text-gray-100 px-4 py-2.5 pr-10 text-sm focus:border-[#3B82F6] dark:focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-[#3B82F6]/20 dark:focus:ring-blue-500/20 appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDEyIDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEgMUw2IDZMMTEgMSIgc3Ryb2tlPSIjNkI3MjgwIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==')] bg-size-[12px] bg-position-[center_right_1rem] bg-no-repeat"

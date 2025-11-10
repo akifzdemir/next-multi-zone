@@ -69,6 +69,7 @@ export default function CartSheet({
                   size="icon"
                   onClick={onClose}
                   className="hover:bg-gray-100 dark:hover:bg-gray-800"
+                  aria-label="Close cart"
                 >
                   <X className="h-5 w-5" />
                 </Button>
@@ -140,6 +141,7 @@ export default function CartSheet({
                                   )
                                 }
                                 className="h-6 w-6"
+                                aria-label={`Remove ${item.product.title} from cart`}
                               >
                                 <Trash2 className="h-4 w-4" />
                               </Button>
@@ -158,6 +160,7 @@ export default function CartSheet({
                                   }
                                   disabled={item.quantity <= 1}
                                   className="h-6 w-6 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 disabled:opacity-30 disabled:cursor-not-allowed"
+                                  aria-label="Decrease quantity"
                                 >
                                   -
                                 </button>
@@ -174,6 +177,7 @@ export default function CartSheet({
                                     )
                                   }
                                   className="h-6 w-6 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+                                  aria-label="Increase quantity"
                                 >
                                   +
                                 </button>

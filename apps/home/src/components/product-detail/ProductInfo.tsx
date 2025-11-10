@@ -148,6 +148,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
             variant="icon"
             size="icon"
             className="bg-transparent dark:bg-transparent hover:bg-transparent hover:text-gray-900 dark:hover:text-gray-100"
+            aria-label="Decrease quantity"
           >
             <Minus className="h-4 w-4" />
           </Button>
@@ -159,6 +160,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
             variant="icon"
             size="icon"
             className="bg-transparent dark:bg-transparent hover:bg-transparent hover:text-gray-900 dark:hover:text-gray-100"
+            aria-label="Increase quantity"
           >
             <Plus className="h-4 w-4" />
           </Button>

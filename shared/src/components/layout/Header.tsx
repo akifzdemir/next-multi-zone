@@ -73,10 +73,10 @@ export default function Header({
             </a>
           </nav>
           <div className="flex items-center gap-3">
-            <Button variant="icon" size="icon">
+            <Button variant="icon" size="icon" aria-label="Search">
               <Search className="h-5 w-5" />
             </Button>
-            <Button variant="icon" size="icon">
+            <Button variant="icon" size="icon" aria-label="User account">
               <User className="h-5 w-5" />
             </Button>
             <div className="relative">
@@ -84,6 +84,9 @@ export default function Header({
                 variant="icon"
                 size="icon"
                 onClick={() => setIsCartOpen(true)}
+                aria-label={`Shopping cart${
+                  totalItems > 0 ? ` (${totalItems} items)` : ""
+                }`}
               >
                 <ShoppingBag className="h-5 w-5" />
                 <span
